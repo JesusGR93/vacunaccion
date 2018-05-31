@@ -1,0 +1,223 @@
+<section
+  class="otro"
+  ng-controller="VaccinesController">
+
+  <aside
+    class="aside"
+    data-ng-controller="AsideMenuController"
+    ng-include="index_aside">
+  </aside>
+
+  <div
+    class="contentSection">
+
+    <div
+      class="sectionMenu">
+
+      <span
+        class="title">
+        Administración de vacunas
+      </span>
+
+      <md-button
+        ng-click="submit()"
+        ng-disabled="false"
+        class="md-raised md-primary createButton">
+        Guardar
+      </md-button>
+      <md-button
+        href="/#!/vaccines/"
+        ng-disabled="false"
+        class="md-raised md-primary cancelButton">
+        Cancelar
+      </md-button>
+
+    </div>
+
+    <div
+      class="contentCreate">
+
+      <hr>
+      <span
+        class="title">Alta de nueva vacuna
+      </span>
+      <hr>
+
+      <form
+        ng-submit="submit()"
+        id="myForm"
+        validate>
+
+        <div
+          class="picture">
+          <div
+            id="picture-preview"
+            class="picture-preview">
+            <md-tooltip
+              md-direction="top">
+              Agregar imágen
+            </md-tooltip>
+          </div>
+
+          <input
+              type="file"
+              multiple
+              ng-model="picture"
+              ngf-select="onChangePicture()"
+              name="file"
+              ngf-pattern="'image/*'"
+              accept="image/*"
+              ngf-max-size="20MB"
+             >
+           </input>
+          <div
+            class="error">
+              {{error}}
+          </div>
+        </div>
+
+        <div class="info">
+
+          <md-input-container
+            class="input-info">
+            <label>ID de CEV</label>
+            <md-tooltip
+              md-direction="top">
+              ID de CEV
+            </md-tooltip>
+            <input
+              ng-model="id"
+              name="id"
+              md-maxlength="30"
+              ng-pattern="/^[0-9]/"
+              required></input>
+          </md-input-container>
+
+          <md-input-container
+            class="input-info">
+            <label>Nombre de vacuna</label>
+            <md-tooltip
+              md-direction="top">
+              Nombre de vacuna
+            </md-tooltip>
+            <input
+              ng-model="name"
+              name="name"
+              md-maxlength="100"
+              required></input>
+          </md-input-container>
+
+          <md-input-container
+            ng-init="readAllVaccines()"
+            class="input-info">
+            <label>Vacuna previa</label>
+            <md-tooltip
+              md-direction="top">
+              Vacuna previa
+            </md-tooltip>
+            <md-select
+              ng-model="previousVaccine">
+              <md-option
+                ng-repeat="vaccine in vaccinesList"
+                value="{{vaccine._id}}">
+                <!-- ng-disabled="$index === 1"> -->
+                {{vaccine.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-input-container
+            ng-init="readAllAdministrationRoutes()"
+            class="input-info">
+            <label>Vía de administración</label>
+            <md-tooltip
+              md-direction="top">
+              Vía de administración
+            </md-tooltip>
+            <md-select
+              ng-model="administrationRoute"
+              required>
+              <md-option
+                ng-repeat="route in administrationRoutes"
+                value="{{route._id}}">
+                {{route.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-input-container
+            class="input-info">
+            <label>Dosis (ml)</label>
+            <md-tooltip
+              md-direction="top">
+              Dosis (ml)
+            </md-tooltip>
+            <!-- ng-pattern="/^[0-9]{5}$/" -->
+            <input
+              data-ng-model="dose"
+              ng-pattern="/^[0-9]/"
+              required></input>
+              <div
+                class="hint"
+                ng-if="showHints">
+                Introducir valor en mililitros
+              </div>
+          </md-input-container>
+
+
+          <md-input-container
+            class="input-info">
+            <label>Género</label>
+            <md-tooltip
+              md-direction="top">
+              Género
+            </md-tooltip>
+            <md-select
+              ng-model="gender"
+              required>
+              <md-option
+                ng-repeat="gender in genderArray"
+                value="{{gender}}">
+                {{gender}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- <md-input-container>
+  <label>Nombre de la vacuna</label>
+  <input
+    data-ng-model="name"
+    name="name"
+    ng-pattern="/^[0-9]{5}$/"
+    md-maxlength="5"
+    required>
+    <div
+      ng-messages="name.$error"
+      role="alert"
+      multiple>
+      <div
+        ng-message="required"
+        class="my-message">
+        Este capo es requerido
+      </div>
+      <div
+        ng-message="pattern"
+        class="my-message">
+        Por favor introduce un nombre válido
+      </div>
+      <div
+        ng-message="md-maxlength"
+        class="my-message">
+        La información introducida
+        excede los caráctares permitidos
+      </div>
+    </div>
+</md-input-container> -->

@@ -1,0 +1,76 @@
+@import 'statics';
+
+.contentSection{
+  position: relative;
+  float: left;
+  width: calc(100% - 275px);
+  margin: 25px 0px 25px 270px;
+  
+  .container {
+    position: relative;
+    float: left;
+    width: 100%;
+    .md-button:not([disabled]) {
+      @include enfasis(#fff);
+  		position: relative;
+  		float: right;
+      display: inline-block;
+			border: 0;
+		}
+		.createButton {
+      margin: -1px 0px 25px 0px;
+      background-color: $color-green !important;
+		}
+		.createButton:hover {
+			background-color: $color-green-black !important;
+		}
+  }
+
+  .sectionMenu{
+    position: relative;
+    float: left;
+    width: 100%;
+    .title{
+      @include title(#777);
+      font-weight: lighter;
+      position: relative;
+      float: left;
+      width: auto;
+      margin: 25px 0px 15px 30px;
+    }
+    .md-button:not([disabled]) {
+      @include enfasis(#fff);
+      position: relative;
+      float: right;
+      display: inline-block;
+      border: 0;
+      margin: 20px 30px 20px 0px;
+    }
+    .createButton {
+      background-color: $color-green !important;
+    }
+    .createButton:hover {
+      background-color: $color-green-black !important;
+    }
+    .cancelButton {
+      background-color: $color-primary !important;
+      margin: 20px 15px 20px 0px !important;
+    }
+    .cancelButton:hover {
+      background-color: $color-primary-black !important;
+    }
+  }
+
+}
+
+.index-bck  {
+    float: center;
+    width: 100%;
+    height: 700px;
+    background: url("./img/logo_protegelos.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0px 0px 0px 0px;
+    outline: none;
+}

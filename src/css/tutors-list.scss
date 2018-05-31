@@ -1,0 +1,17 @@
+
+@import 'statics';
+
+.tutorsList {
+  .first_name,.email {
+    width: 20%;
+  }
+
+  .father_surname,.mother_surname,.kinship,.acciones  {
+    width: 16%;
+  }
+
+  .acciones  {
+    width: 5em;
+  }
+
+}

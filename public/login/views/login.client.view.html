@@ -1,0 +1,84 @@
+<section
+  class="login"
+  data-ng-controller="LoginController"
+  data-ng-show="!loggedUser.isAuthed">
+
+  <div
+    ng-show="!recoveryView"
+    class="login-lightBox">
+    <div class="ic_cev"></div>
+    <p>Bienvenido</p>
+    <form
+      data-ng-submit="login()"
+      validate>
+
+      <input
+        type="email"
+        data-ng-model="username"
+        name="username"
+        value=""
+        autocomplete="on"
+        placeholder="Usuario" required>
+      <input
+        type="password"
+        data-ng-model="password"
+        name="password"
+        value=""
+        autocomplete="off"
+        placeholder="Contraseña" required>
+
+      <div
+        class="errorMsg"
+        data-ng-bind="error"
+        data-ng-show="error"></div>
+
+      <md-button
+        type="submit"
+        ng-disabled="loginButtonDisabled"
+        class="md-raised md-primary loginButton">
+        Iniciar sesión</md-button>
+
+    </form>
+    <p
+      ng-click="recoveryView = !recoveryView;error = null;"
+      class="bt_recovery">
+      Reestablecer contraseña
+    </p>
+
+  </div>
+
+  <div
+    ng-show="recoveryView"
+    class="recovery-lightBox">
+    <div class="ic_cev"></div>
+    <p>Reestablecer contraseña</p>
+    <form
+      data-ng-submit="recovery()"
+      validate>
+
+      <input
+        type="email"
+        data-ng-model="username"
+        name="username"
+        value=""
+        autocomplete="on"
+        placeholder="Correo electrónico" required>
+
+      <div
+        class="msg"
+        data-ng-bind="error"
+        data-ng-show="error"></div>
+
+      <md-button
+        type="submit"
+        ng-disabled="recoveryButtonDisabled"
+        class="md-raised md-primary loginButton">
+        Reestablecer</md-button>
+    </form>
+    <p
+      ng-click="recoveryView = !recoveryView;error = null;"
+      class="bt_recovery">
+      Iniciar sesión
+    </p>
+  </div>
+</section>

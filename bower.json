@@ -1,0 +1,47 @@
+{
+  "name": "webapp-cev-protegelos",
+  "description": "A MEAN application for managing doctors, tutors, clinics and patients",
+  "main": "server.js",
+  "authors": [
+    "Alejandro Cedeño <alejandro.cedeno@ironbit.com.mx>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "MongoDB",
+    "Express",
+    "AngularJS",
+    "Node.js"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "1.5.5",
+    "angular-route": "1.5.5",
+    "angular-resource": "1.5.5",
+    "angular-animate": "1.5.5",
+    "angular-messages": "1.5.5",
+    "angular-aria": "1.5.5"
+
+  },
+  "dependencies": {
+    "angular-material": "^1.1.1",
+    "ng-file-upload": "^12.0.4",
+    "ng-file-upload-shim": "^12.0.4",
+    "angular-base64": "^2.0.5",
+    "bootstrap": "boostrap#^3.3.7",
+    "jquery": "^3.1.1",
+    "angular-bootstrap": "^2.2.0",
+    "moment": "^2.17.1",
+    "forge-bower": "^0.6.451"
+  }
+}

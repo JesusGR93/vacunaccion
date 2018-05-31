@@ -1,0 +1,208 @@
+<section
+  class="otro" ng-cloack>
+
+  <aside
+    class="aside"
+    data-ng-controller="AsideMenuController"
+    ng-include="index_aside">
+  </aside>
+
+  <div class="contentSection">
+
+    <div class="sectionMenu">
+
+      <span
+        class="title">
+        {{ frontTexts.title1 }}
+      </span>
+
+      <md-button
+        ng-click="submit()"
+        ng-disabled="false"
+        class="md-raised md-primary createButton">
+        {{ frontTexts.button }}
+      </md-button>
+
+      <md-button
+        href="/#!/admins/"
+        ng-disabled="false"
+        class="md-raised md-primary cancelButton">
+        Cancelar
+      </md-button>
+      
+    </div>
+
+    <div
+      class="contentCreate">
+
+      <hr>
+      <span
+        class="title">
+        {{ frontTexts.title2 }}
+      </span>
+      <hr>
+
+      <form name="adminForm">
+
+        <!--div
+          class="picture">
+          <div
+            id="picture-preview"
+            class="picture-preview">
+          </div>
+
+          <input
+              type="file"
+              multiple
+              ng-model="picture"
+              ngf-select="onChangePicture()"
+              name="file"
+              ngf-pattern="'image/*'"
+              accept="image/*"
+              ngf-max-size="20MB"
+             >
+           </input>
+          <div
+            class="error">
+            {{error}}
+          </div>
+        </div-->
+
+        <div class="info">
+
+          <div class="title"> Datos Generales </div>
+
+          <md-input-container class="input-info">
+            <label> Nombres * </label>
+            <input
+              name="first_name"
+              maxlength="50" md-maxlength="50"
+              ng-model="admin.first_name"
+              ng-pattern="/^([A-ZñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"
+              required
+              uppercase-only></input>
+
+              <div ng-show="adminForm.first_name.$touched || submitted">
+                <div class="error" ng-show="adminForm.first_name.$error.required"> 
+                  Campo requerido. 
+                </div>
+                <div class="error" ng-show="adminForm.first_name.$error.pattern"> 
+                  Debe contener espacios y caracteres alfabéticos. 
+                </div>
+              </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Primer apellido * </label>
+            <input
+              name="father_surname"
+              maxlength="50" md-maxlength="50"
+              ng-model="admin.father_surname"
+              ng-pattern="/^([a-zA-ZñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"
+              required
+              uppercase-only></input>
+
+              <div ng-show="adminForm.father_surname.$touched || submitted">
+                <div class="error" ng-show="adminForm.father_surname.$error.required"> 
+                  Campo requerido. 
+                </div>
+                <div class="error" ng-show="adminForm.father_surname.$error.pattern"> 
+                  Debe contener espacios y caracteres alfabéticos. 
+                </div>
+              </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Segundo apellido * </label>
+            <input
+              name="mother_surname"
+              maxlength="50" md-maxlength="50"
+              ng-model="admin.mother_surname"
+              ng-pattern="/^([a-zA-ZñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"
+              required
+              uppercase-only></input>
+
+              <div ng-show="adminForm.mother_surname.$touched || submitted">
+                <div class="error" ng-show="adminForm.mother_surname.$error.required"> 
+                  Campo requerido. 
+                </div>
+                <div class="error" ng-show="adminForm.mother_surname.$error.pattern"> 
+                  Debe contener espacios y caracteres alfabéticos. 
+                </div>
+              </div>
+          </md-input-container>
+
+
+          <md-input-container
+            class="input-info">
+            <label> Email * </label>
+            <input
+              type="email" 
+              name="email" 
+              maxlength="50" md-maxlength="50"
+              ng-model="admin.email"
+              required></input>
+
+            <div ng-show = "adminForm.email.$touched || submitted">
+              <div class="error" ng-show="adminForm.email.$error.required"> Campo requerido. </div>
+              <div class="error" ng-show="adminForm.email.$error.email"> Email no válido. </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container
+            class="input-info">
+            <label> Contraseña * </label>
+            <input
+              type="password" 
+              name="password1"
+              maxlength="50" md-maxlength="50"
+              ng-model="password1"
+              ng-minlength="6" 
+              ng-required="passwordRequired"></input>
+
+            <div ng-show = "adminForm.password1.$touched || submitted">
+              <div class="error" ng-show="adminForm.password1.$error.required"> 
+                Campo requerido. 
+              </div>
+              <div class="error" ng-show="adminForm.password1.$error.minlength"> 
+                Debe contener al menos 6 caracteres. 
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container
+            class="input-info">
+            <label> Repetir contraseña * </label>
+            <input
+              type="password" 
+              name="password2"
+              maxlength="50" md-maxlength="50"
+              ng-model="password2"
+              ng-minlength="6" 
+              ng-required="passwordRequired"></input>
+
+            <div ng-show = "adminForm.password2.$touched || submitted">
+              <div class="error" ng-show="adminForm.password2.$error.required"> 
+                Campo requerido. 
+              </div>
+              <div class="error" ng-show="adminForm.password2.$error.minlength"> 
+                Debe contener al menos 6 caracteres. 
+              </div>
+            </div>
+          </md-input-container>
+
+          <div class="error"> 
+            {{error}} 
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+  
+</section>

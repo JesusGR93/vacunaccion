@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://protegelos-dev.cloudapp.net/#!/login" />
+<title>create_admin_1</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create_admin_1</td></tr>
+</thead><tbody>
+<!--Administacion de usuarios-->
+<tr>
+	<td>click</td>
+	<td>//md-list-item[@id='asideMenu_0']/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--Editar último elemento de la lista-->
+<tr>
+	<td>click</td>
+	<td>//md-list-item[last()]/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--Modifica todos los campos-->
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>mitka@sisma.com.mx</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=first_name</td>
+	<td>Mitca Sismaill</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=father_surname</td>
+	<td>Alvaradoo</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=mother_surname</td>
+	<td>Gomezz</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password1</td>
+	<td>qweqwee</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password2</td>
+	<td>qweqwee</td>
+</tr>
+<!--Actualizar-->
+<tr>
+	<td>click</td>
+	<td>//section/div/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

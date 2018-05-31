@@ -1,0 +1,212 @@
+@import 'statics';
+.contentCreate{
+  hr{
+    position: relative;
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 1px solid $color-second-clear;
+  }
+  .title{
+    @include enfasis(#000);
+    font-weight: lighter;
+    position: relative;
+    float: left;
+    padding: 0;
+    margin: 0;
+    width: calc(100% - 92px);
+    margin: 15px 0px 15px 30px;
+  }
+  form{
+    position: relative;
+    float: left;
+    background-color: #fff;
+    width: calc(100% - 60px);
+    height: auto;
+    min-height: 265px;
+    // margin-top: 25px;
+    // margin-left: 30px;
+    margin: 25px 0px 25px 30px;
+    @include border(10px);
+    overflow: hidden;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    /*
+    .picture{
+      width: 200px;
+      left:0;
+      position:absolute;
+      height:100%;
+      border-right: 1px solid $color-second-clear;
+
+      .picture-preview{
+        position: relative;
+        float: left;
+        width: 120px;
+        height: 120px;
+        margin: 30px 40px 0px 40px;
+        @include border(60px);
+        background: url($source-ic-picture-default);
+        background-position: center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        // border: solid 6px $color-primary-black;
+      }
+      input{
+        display: block;
+        position: relative;
+        float: left;
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+        margin: -15px 80px 0px 80px;
+        padding-left: 40px;
+        background: gray;
+        @include border(30px);
+        background: url($source-ic-edit);
+        background-color: $color-primary;
+        background-position: center;
+        background-size: 40%;
+        background-repeat: no-repeat;
+        outline: none;
+        cursor: pointer;
+      }
+      input:hover{
+        background-color: $color-primary-black;
+      }
+      .error{
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        padding: 10px;
+        @include enfasis($color-error);
+        text-align: center;
+      }
+    }
+    */
+    .info{
+      position: relative;
+      float: left;
+      width: calc(100%);
+      padding: 40px 10px 55px 25px;
+      // margin-left: 200px;
+      // border-left: 1px solid $color-second-clear;
+
+      .title {
+        color: #039903;
+        font-size:20px;
+        text-align: center;
+      }
+
+      .input-modal-datepicker {
+          display: inline-block;
+          font-size: 14px;
+          box-sizing: border-box;
+          border: none;
+          box-shadow: none;
+          background: transparent;
+          margin: 25px 25px 25px 25px;
+          min-width: 250px;
+          width: calc(34% - 50px);
+      }
+
+      .input-info {
+        position: relative;
+        float: center;
+        width: calc(33% - 60px);
+        height: 50px;
+        min-width: 250px;
+        margin: 25px 30px 30px 25px;
+        .md-select-icon{
+          color: $color-primary;
+        }
+
+        label {
+          font-size: 16px;
+          margin: 0px;
+          padding: 0px;
+        }
+      }
+
+      .input-info-2 {
+        position: relative;
+        float: center;
+        width: calc(66% - 50px);
+        height: 50px;
+        min-width: 250px;
+        margin: 25px 25px 25px 25px;
+        .md-select-icon{
+          color: $color-primary;
+        }
+        
+        label {
+          font-size: 16px;
+          margin: 0px;
+          padding: 0px;
+        }
+      }
+
+      .input-info-3 {
+        box-shadow: 3px 3px 3px 3px #8daa8d;
+        float: left;
+        margin: 25px 25px 0px 25px;
+        min-width: 200px;
+        padding: 15px 25px;
+        width: calc(50% - 50px);
+        .md-select-icon{
+          color: $color-primary;
+        }
+        .icon-delete {
+          height: 25px;
+          margin: 15px 0px;
+        }
+        h4 {
+          font-size: 1.1em;
+          line-height: 1.5em;
+        }
+      }
+       
+    }
+  }
+}
+
+.md-dialog-content {
+  .input-modal {
+    position: relative;
+    float: center;
+    width: calc(48% - 50px);
+    height: 50px;
+    min-width: 250px;
+    margin: 25px 25px 25px 25px;
+    .md-select-icon{
+      color: $color-primary;
+    }
+    
+    label {
+      font-size: 16px;
+      margin: 0px;
+      padding: 0px;
+    }
+  }
+
+  .input-modal-1 {
+    box-shadow: 3px 3px 3px 3px #8daa8d;
+    float: right;
+    margin: 12px 68px 0px 0px;
+    min-width: 200px;
+    padding: 15px 25px;
+    width: calc(48% - 58px);
+    .md-select-icon{
+      color: $color-primary;
+    }
+    .icon-delete {
+      height: 25px;
+      margin: 15px 0px;
+    }
+    h4 {
+      font-size: 1.1em;
+      line-height: 1.5em;
+    }
+  }
+
+}

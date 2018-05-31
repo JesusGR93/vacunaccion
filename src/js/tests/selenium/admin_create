@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://protegelos-dev.cloudapp.net/#!/login" />
+<title>create_admin_1</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">create_admin_1</td></tr>
+</thead><tbody>
+<!--Administacion de usuarios-->
+<tr>
+	<td>click</td>
+	<td>//md-list-item[@id='asideMenu_0']/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Agregar usuario +</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--Agregar-->
+<tr>
+	<td>click</td>
+	<td>//section/div/div/button</td>
+	<td></td>
+</tr>
+<!--Llena formulario-->
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>mitka@sisma.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=first_name</td>
+	<td>Mitca Sismail</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=father_surname</td>
+	<td>Alvarado</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=mother_surname</td>
+	<td>Gomez</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password1</td>
+	<td>qweqwe</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password2</td>
+	<td>qweqwe</td>
+</tr>
+<!--Agregar-->
+<tr>
+	<td>click</td>
+	<td>//section/div/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

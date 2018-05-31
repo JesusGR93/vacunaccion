@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="70"
+   height="70"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="ic_edit.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="125.32019"
+     inkscape:cy="95.138477"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1371"
+     inkscape:window-height="845"
+     inkscape:window-x="47"
+     inkscape:window-y="74"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-982.36218)">
+    <path
+       style="fill:#ffffff"
+       d="M 0.486106,1051.8761 C 0.21875,1051.6087 0,1048.2585 0,1044.4311 l 0,-6.9588 20.946749,-20.9925 c 11.520717,-11.5459 21.453337,-20.99262 22.072495,-20.99262 1.446856,0 13.855756,12.43542 13.855756,13.88542 0,0.6029 -9.446653,10.5221 -20.992555,22.0428 l -20.992555,20.9468 -6.958832,0 c -3.827366,0 -7.177588,-0.2187 -7.444952,-0.4861 z M 54.490005,997.84258 C 50.989247,994.32548 48.125,990.91059 48.125,990.2539 c 0,-1.64114 7.097854,-7.8917 8.961436,-7.8917 2.025013,0 12.913564,10.88858 12.913564,12.91358 0,1.8818 -6.25792,8.96142 -7.921317,8.96142 -0.673021,0 -4.087927,-2.8776 -7.588678,-6.39462 z"
+       id="path2996"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>adminTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">adminTest</td></tr>
+</thead><tbody>
+<!--Administacion de tutores-->
+<tr>
+	<td>click</td>
+	<td>//md-list-item[@id='asideMenu_2']/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--Editar último elemento de la lista-->
+<tr>
+	<td>click</td>
+	<td>//md-list-item[last()]/span/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--Verifica que haya guardado los datos correctamente-->
+<tr>
+	<td>verifyValue</td>
+	<td>name=email</td>
+	<td>tutor1@tutor.comm</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=first_name</td>
+	<td>Ma de la Cruz</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=father_surname</td>
+	<td>Zapataa</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=mother_surname</td>
+	<td>Montejoo</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css='input[name=&quot;country_id&quot;] div.md-text.ng-binding'</td>
+	<td>MÉXICO</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=birthdate_1</td>
+	<td>1977/01/02</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css='input[name=&quot;gender&quot;] div.md-text.ng-binding'</td>
+	<td>FEMENINO</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css='input[name=&quot;birthplace_1&quot;] div.md-text.ng-binding'</td>
+	<td>BAJA CALIFORNIA</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=curp</td>
+	<td>ZAMC770102MBCPNR</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=phone</td>
+	<td>4442553333</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css='input[name=&quot;state_id&quot;] div.md-text.ng-binding'</td>
+	<td>BAJA CALIFORNIA</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css='input[name=&quot;municipality_id&quot;] div.md-text.ng-binding'</td>
+	<td>PLAYAS DE ROSARITO</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css='input[name=&quot;locality_id&quot;] div.md-text.ng-binding'</td>
+	<td>ALISITOS</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=zip_code</td>
+	<td>23232</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=suburb_name</td>
+	<td>ASENTAMIENTO 1TT</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css='input[name=&quot;suburb_type&quot;] div.md-text.ng-binding'</td>
+	<td>AMPLIACIÓN</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=street_name</td>
+	<td>CALLE 1TT</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css='input[name=&quot;street_type&quot;] div.md-text.ng-binding'</td>
+	<td>ANDADOR</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=ext_number</td>
+	<td>125TT</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=int_number</td>
+	<td>23TT</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=between_street_1</td>
+	<td>DINAMO</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=between_street_2</td>
+	<td>DOMINICA</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=reference</td>
+	<td>FRENTE AL MERCADO</td>
+</tr>
+<!--Cancelar-->
+<tr>
+	<td>click</td>
+	<td>link=Cancelar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

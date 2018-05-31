@@ -1,0 +1,44 @@
+<div
+  ng-init="init();">
+  <a
+    class="ic-cdv"
+    href="/#!/">
+  </a>
+
+  <md-list
+    class="list">
+    <md-list-item
+      class="md-1-line listItem"
+      ng-repeat="menu in asideMenu"
+      ng-click="asideMenuEvent(menu.path);"
+      ng-init="menuSelected(menu)"
+      ng-show="mustBeShow(menu.path);"
+      id="asideMenu_{{$index}}">
+        <img
+          ng-src="{{menu.ic}}_off.png"
+          class="md-icon"
+          ng-show="!menu.selected"/>
+        <img
+          ng-src="{{menu.ic}}_on.png"
+          class="md-icon"
+          ng-show="menu.selected"/>
+        <span
+          ng-show="!menu.selected">
+          {{menu.tag}}</span>
+        <span
+          class="selected"
+          ng-show="menu.selected">
+          {{menu.tag}}</span>
+    </md-list-item>
+  </md-list>
+
+  <div
+    class="foter">
+    <div class="ic-fundacion-cs"></div>
+    <md-button
+      ng-click="logout()"
+      ng-disabled="false"
+      class="md-raised md-primary logoutButton">
+      Cerrar sesión</md-button>
+  </div>
+</div>

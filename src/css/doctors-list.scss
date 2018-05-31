@@ -1,0 +1,16 @@
+@import 'statics';
+
+.doctorsList {
+  .first_name,.email {
+    width: 20%;
+  }
+
+  .professional_license,.father_surname,.mother_surname,.acciones  {
+    width: 16%;
+  }
+
+  .acciones  {
+    width: 5em;
+  }
+
+}

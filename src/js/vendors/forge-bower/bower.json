@@ -1,0 +1,16 @@
+{
+  "name": "forge-bower",
+  "version": "0.6.451",
+  "description": "Porting of forge for bower",
+  "moduleType": ["amd"],
+  "authors": [
+    "Obsidianart"
+  ],
+  "license": "BSD",
+  "main": ["dist/forge.min.js"],
+  "dependencies": {},
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ]
+}

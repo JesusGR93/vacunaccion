@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="login">login</a></td></tr>
+<tr><td><a href="admin_create">admin_create</a></td></tr>
+<tr><td><a href="admin_create_verify">admin_create_verify</a></td></tr>
+<tr><td><a href="admin_update">admin_update</a></td></tr>
+<tr><td><a href="admin_update_verify">admin_update_verify</a></td></tr>
+<tr><td><a href="admin_delete">admin_delete</a></td></tr>
+<tr><td><a href="clinic_create">clinic_create</a></td></tr>
+<tr><td><a href="clinic_create_verify">clinic_create_verify</a></td></tr>
+<tr><td><a href="clinic_update">clinic_update</a></td></tr>
+<tr><td><a href="clinic_update_verify">clinic_update_verify</a></td></tr>
+<tr><td><a href="clinic_delete">clinic_delete</a></td></tr>
+<tr><td><a href="doctor_create">doctor_create</a></td></tr>
+<tr><td><a href="doctor_create_verify">doctor_create_verify</a></td></tr>
+<tr><td><a href="doctor_update">doctor_update</a></td></tr>
+<tr><td><a href="doctor_update_verify">doctor_update_verify</a></td></tr>
+<tr><td><a href="tutor_create">tutor_create</a></td></tr>
+<tr><td><a href="tutor_create_verify">tutor_create_verify</a></td></tr>
+<tr><td><a href="tutor_update">tutor_update</a></td></tr>
+<tr><td><a href="tutor_update_verify">tutor_update_verify</a></td></tr>
+<tr><td><a href="patient_create">patient_create</a></td></tr>
+<tr><td><a href="patient_create_verify">patient_create_verify</a></td></tr>
+<tr><td><a href="patient_update">patient_update</a></td></tr>
+<tr><td><a href="patient_update_verify">patient_update_verify</a></td></tr>
+<tr><td><a href="patient_delete">patient_delete</a></td></tr>
+</tbody></table>
+</body>
+</html>

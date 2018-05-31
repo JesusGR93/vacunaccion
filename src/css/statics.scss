@@ -1,0 +1,96 @@
+//Variables
+$font-stack:    'Source Sans Pro', sans-serif;
+//$font-stack:    'Slabo 27px', sans-serif;
+
+$source-login_base: 			"./img/login_base.png";
+$source-login_flotando: 	"./img/login_flotando.png";
+$source-ic_cev: 					"./img/ico_protegelos.png";
+
+$source-ic-cdv:           "./img/logo_protegelos.png";
+$source-fundacion-cs:     "./img/Logo-bold-01.jpg";
+
+$source-ic-edit:          "./img/ic_edit.svg";
+$source-ic-picture-default:"./img/picture-default.png";
+// $source-ic-edit:          "./img/ic_editar_off.png";
+
+$background-color:        #E7E7E7;
+$background-dev:          rgba(128,255,128,0.2);
+
+$color-primary:						#048CDB; // Azul
+$color-primary-black:			#0478bb; // Azul obscuro
+$color-second: 						#B5B5B5; // Gris
+$color-second-clear:			#ddd; // Gris
+$color-error:							#c83737; // Rojo
+$color-green:             #00b700; // Verde
+$color-green-black:       #009400; // Verde obscuro
+
+$color-list-selected:     #F2F2F2;
+
+$font-size-title:         18px;
+$font-size-subtitle:      16px;
+$font-size-enfasis:       14px;
+$font-size-regular-text:  12px;
+
+$aside-width:             270px;
+
+@mixin border($border){
+  -webkit-border-radius: $border;
+  -moz-border-radius: $border;
+  border-radius: $border;
+}
+
+@mixin title($color) {
+	font-size: $font-size-title;
+  font-family: $font-stack;
+	color: $color;
+}
+@mixin subtitle($color) {
+	font-size: $font-size-subtitle;
+	color: $color;
+  font-family: $font-stack;
+	font-weight: bold;
+}
+@mixin enfasis($color) {
+	font-size: $font-size-enfasis;
+	color: $color;
+  font-family: $font-stack;
+	font-weight: bold;
+}
+@mixin regularText($color) {
+	font-size: $font-size-regular-text;
+  font-family: $font-stack;
+	color: $color;
+}
+
+@mixin border($border){
+  -webkit-border-radius: $border;
+  -moz-border-radius: $border;
+  border-radius: $border;
+}
+
+
+//Function of transition
+@mixin transition($time){
+  -webkit-transition: all $time ease;
+  -moz-transition: all $time ease;
+  -ms-transition: all $time ease;
+  -o-transition: all $time ease;
+  transition: all $time ease;
+}
+@mixin buttonShine(){
+  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.7);
+}
+// @mixin button(){
+//   position: relative;
+//   border: 0;
+//   outline: none;
+//   @include border(50px);
+//   @include enfasis(#fff);
+//   text-align: center;
+//   cursor: pointer;
+//   -webkit-transition: all .3s ease;
+//   -moz-transition: all .3s ease;
+//   -ms-transition: all .3s ease;
+//   -o-transition: all .3s ease;
+//   transition: all .3s ease;
+// }

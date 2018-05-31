@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://protegelos-dev.cloudapp.net/#!/login" />
+<title>clinic_create</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">clinic_create</td></tr>
+</thead><tbody>
+<!--Administacion de clínicas-->
+<tr>
+	<td>click</td>
+	<td>//md-list-item[@id='asideMenu_4']/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--Agregar-->
+<tr>
+	<td>click</td>
+	<td>link=Agregar clínica +</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--Llena formulario-->
+<tr>
+	<td>type</td>
+	<td>name=name</td>
+	<td>Centro de Salud</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=code</td>
+	<td>986745AB</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css='input[name=&quot;state_id&quot;] div.md-text.ng-binding'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=state_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css='input[name=&quot;municipality_id&quot;] div.md-text.ng-binding'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=municipality_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css='input[name=&quot;locality_id&quot;] div.md-text.ng-binding'</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=locality_2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=zip_code</td>
+	<td>78592</td>
+</tr>
+<!--Agregar-->
+<tr>
+	<td>click</td>
+	<td>//section/div/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPageToLoad</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

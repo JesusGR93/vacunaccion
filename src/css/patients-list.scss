@@ -1,0 +1,16 @@
+@import 'statics';
+
+.patientsList {
+  .first_name,.email {
+    width: 20%;
+  }
+
+  .father_surname,.mother_surname,.medical_record,.blood_type,.acciones  {
+    width: 16%;
+  }
+
+  .acciones  {
+    width: 5em;
+  }
+
+}

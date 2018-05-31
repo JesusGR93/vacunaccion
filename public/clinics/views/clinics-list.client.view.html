@@ -1,0 +1,184 @@
+<section
+  class="otro" ng-cloack>
+
+  <aside
+    class="aside"
+    data-ng-controller="AsideMenuController"
+    ng-include="index_aside">
+  </aside>
+
+  <div class="contentSection">
+
+    <div class="container">
+
+<div class="col-md-12">        
+      <form
+      name="clinicForm"
+      ng-submit="submit()"
+      id="myForm"
+      validate>
+
+    
+        <md-input-container class="col-md-4">
+          <label> Estado </label>
+          <md-select
+            id="state_id"
+            name="state_id"
+            ng-model="selected.state"
+            ng-change="searchMunicipalities(selected.state)">
+            <md-option
+              id="state_{{ $index }}"
+              ng-repeat="state in catalog.states | orderBy:'name'"
+              ng-value="state">
+              {{ state.name }}
+            </md-option>
+          </md-select>
+
+          <div ng-show="clinicForm.state_id.$touched || submitted">
+            
+          </div>
+        </md-input-container>
+
+
+        <md-input-container
+          class="col-md-4">
+          <label> Municipio </label>
+          <md-select
+            id="municipality_id"
+            name="municipality_id"
+            ng-model="selected.municipality"
+            ng-change="searchLocalities(selected.municipality)"
+            >
+            <md-option
+              id="municipality_{{ $index }}"
+              ng-repeat="municipality in catalog.municipalityList | orderBy:'name'"
+              ng-value="municipality">
+              {{ municipality.name }}
+            </md-option>
+          </md-select>
+
+          <div ng-show="clinicForm.municipality_id.$touched || submitted">
+            
+          </div>
+        </md-input-container>
+
+
+        <md-input-container class="col-md-4">
+          <label> Localidad </label>
+          <md-select
+            name="locality_id"
+            ng-model="selected.idLocality">
+            <md-option
+              id="locality_{{ $index }}"
+              ng-repeat="locality in localityList | orderBy:'name'"
+              ng-value="locality.id">
+              {{ locality.name }}
+            </md-option>
+          </md-select>
+
+          <div ng-show = "clinicForm.locality_id.$touched || submitted">
+           
+          </div>
+        </md-input-container>
+      
+        
+
+      
+    </form>
+      </div>
+
+
+      <div class="col-md-15">
+          <div class="col-md-6"></div>
+          <div class="col-md-9">
+              <div class="col-md-5">
+            <input type="text" class="form-control" id="textsearch" ng-model="textsearch" placeholder="search">
+              </div>
+              <div class="col-md-4">
+            <div class="form-group">
+                <select class="form-control" id="filterOption" ng-model="filterOption"
+                ng-options="opcion._id as opcion.name for opcion in listaOpciones" >
+                <option value="">-- Selecciona --</option>
+                </select>
+              </div>
+              </div>
+          </div>
+        </div>
+      <div class="col-md-2">
+        <md-button
+          href="/#!/clinics/create/"
+          ng-disabled="false"
+          class="md-raised md-primary createButton">
+          Agregar clínica +
+        </md-button>
+      </div>
+      
+      <div
+        class="contentList clinicsList">
+
+        <hr>
+        <ul class="filters">
+         <li class="acciones">
+                ACCIONES
+          </li>
+          <li class="affiliation">
+            NOMBRE
+          </li>
+          <li class="state">
+            REGISTRO SANITARIO
+          </li>
+          <li class="municipality">
+            ESTADO
+          </li>
+          <li class="locality">
+            MUNICIPIO
+          </li>
+          
+        </ul>
+        <hr>
+
+        <md-list ng-init="getClinics()">
+          <md-list-item
+            class="md-1-line admonList"
+            ng-pagination="clinic in clinicsList"
+            ng-pagination-size="10"
+            id="clinicList_{{$index}}">
+
+            <span class="acciones">
+              <a href="#!/clinics/update/{{clinic._id}}" class='icon-edit'></a>
+              <a ng-click="deleteConfirmation($event, clinic)" class='icon-delete'></a>
+            </span>
+
+              <span class="affiliation">
+                {{ $index+1 }}) {{ clinic.name }}
+              </span>
+              <span class="state">
+                {{ clinic.id }}
+              </span>
+              <span class="municipality">
+                {{ clinic.address[0].state_id.name }}
+              </span>
+              <span class="locality">
+                {{ clinic.address[0].municipality_id.name }}
+              </span>
+
+            
+          </md-list-item>
+        </md-list>
+
+        <div class="sectionMenu error">
+          <strong> {{ error }} </strong>
+        </div>
+        
+      </div>
+
+    </div>
+
+    <hr />
+    <div class="text-center" style="margin-right:90px;">
+      <ng-pagination-control   pagination-id="clinicsList"></ng-pagination-control>
+    </div>
+
+  </div>
+  
+</section>

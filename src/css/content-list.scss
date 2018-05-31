@@ -1,0 +1,60 @@
+@import 'statics';
+.contentList{
+  hr{
+    position: relative;
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 1px solid $color-second-clear;
+  }
+  ul{
+    position: relative;
+    float: left;
+    padding: 0;
+    margin: 0;
+    width: calc(100% - 92px);
+    list-style: none;
+    margin: 15px 0px 15px 46px;
+    li{
+      position: relative;
+      float: left;
+      @include regularText(#000);
+    }
+  }
+  .admonList{
+    position: relative;
+    float: left;
+    background-color: #fff;
+    width: calc(100% - 60px);
+    margin-left: 30px;
+    border-bottom: solid 1px $color-second-clear;
+    span{
+      @include enfasis(#222);
+      font-weight: lighter;
+      overflow: hidden;
+    }
+  }
+  .icon-edit {
+      float: left;
+      background: url("./img/ic_editar_on.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      
+      height: 1.5em;
+      width: 1.5em;
+      margin-right: 1.1em;
+  }
+
+  .icon-delete {
+      float: left;
+      background: url("./img/ic_borrar_on.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      
+      height: 1.5em;
+      width: 1.5em;
+  }
+}

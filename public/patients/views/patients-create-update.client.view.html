@@ -1,0 +1,1113 @@
+<section
+  class="otro" ng-cloak>
+
+  <aside
+    class="aside"
+    data-ng-controller="AsideMenuController"
+    ng-include="index_aside">
+  </aside>
+
+  <div
+    class="contentSection">
+
+    <div
+      class="sectionMenu">
+
+      <span
+        class="title">
+        {{frontInfo.title2}}
+      </span>
+
+      <md-button
+        ng-click="submit()"
+        ng-disabled="false"
+        class="md-raised md-primary createButton">
+        {{frontInfo.textButton}}
+      </md-button>
+
+      <md-button
+        href="/#!/patients/"
+        ng-disabled="false"
+        class="md-raised md-primary cancelButton">
+        Cancelar
+      </md-button>
+      <hr>
+    </div>
+
+    <div class="row">
+      <div class="col-md-9 col-md-offset-1">
+
+        <form name="cevSearchForm"> 
+          <br>
+          <div class="input-group" id="adv-search">
+            <input type="text" class="form-control" 
+                   placeholder="BÚSQUEDA DE PACIENTE EN CEV" 
+                   disabled/>
+
+            <div class="input-group-btn">
+              <div class="btn-group" role="group">
+                <div class="dropdown dropdown-lg">
+
+                  <button type="button" class="btn btn-default dropdown-toggle" 
+                          data-toggle="dropdown" aria-expanded="false">
+                          <span class="caret"></span>
+                  </button>
+                  
+                  <div class="dropdown-menu dropdown-menu-right" role="menu">
+                    <div class="form-horizontal" role="form">
+
+                      <div class="form-group">
+                        <label for="contain"> CEV ID </label>
+                        <input class="form-control"
+                               name="masked_id"
+                               type="text" 
+                               maxlength="12"
+                               ng-pattern="/^([a-zA-Z0-9]{8,12})$/"
+                               ng-model="cev.masked_id"
+                               required>
+                        </input>
+                      </div>
+
+                      <div ng-show = "cevSearchForm.masked_id.$touched || submitted">
+                        <div class="error" ng-show="cevSearchForm.masked_id.$error.required"> 
+                          Campo requerido. 
+                        </div>
+                        <div class="error" ng-show="cevSearchForm.masked_id.$error.pattern"> 
+                          Debe contener de 8 a 12 caracteres alfanumericos. 
+                        </div>
+                      </div>
+
+                      <div class="input-modal-datepicker">
+                        <label> FECHA DE NACIMIENTO * </label>
+                        <md-datepicker
+                          md-max-date="maxDate"
+                          name="cevBirthdate"
+                          ng-model="cev.birthdate"
+                          required>
+                        </md-datepicker>
+
+                        <div ng-show = "patientForm.cevBirthdate.$touched || submitted">
+                          <div class="error" ng-show="patientForm.cevBirthdate.$error.required"> 
+                            Campo requerido. 
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="error">  {{ cevError }} </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <button type="button" class="btn btn-success" ng-click="getCevPatient()">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+
+              </div>
+            </div>
+            
+          </div>
+
+        </form>
+      </div>
+</div>
+<br><hr>
+
+    <div class="contentCreate">
+  
+      <form name="patientForm" ng-init="initGetPatientById()">
+
+        <!--div
+          class="picture">
+          <div
+            id="picture-preview"
+            class="picture-preview">
+            <md-tooltip
+              md-direction="top">
+              Agregar imágen
+            </md-tooltip>
+          </div>
+
+          <input
+              type="file"
+              multiple
+              ng-model="picture"
+              ngf-select="onChangePicture()"
+              name="file"
+              ngf-pattern="'image/*'"
+              accept="image/*"
+              ngf-max-size="20MB"
+             >
+          </input>
+          <div
+            class="error">
+            {{error}}
+          </div>
+        </div-->
+
+        <div class="info">
+
+          <div class="error">  {{error}} </div>
+
+          <span class="title"> Datos Generales </span>
+          
+
+          <md-input-container class="input-info">
+            <label> Nombres * </label>
+            <input
+              name="first_name"
+              maxlength="50" md-maxlength="50"
+              ng-model="patient.first_name"
+              ng-pattern="/^([a-zA-ZñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"
+              ng-change="generateCurp()"
+              ng-disabled="cevPatient"
+              required
+              uppercase-only></input>
+
+              <div ng-show="patientForm.first_name.$touched || submitted">
+                <div class="error" ng-show="patientForm.first_name.$error.required"> 
+                  Campo requerido. 
+                </div>
+                <div class="error" ng-show="patientForm.first_name.$error.pattern"> 
+                  Debe contener espacios y caracteres alfabéticos. 
+                </div>
+              </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Primer apellido * </label>
+            <input
+              name="father_surname"
+              maxlength="50" md-maxlength="50"
+              ng-model="patient.father_surname"
+              ng-pattern="/^([a-zA-ZñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"
+              ng-change="generateCurp()"
+              ng-disabled="cevPatient"
+              required
+              uppercase-only></input>
+
+              <div ng-show="patientForm.father_surname.$touched || submitted">
+                <div class="error" ng-show="patientForm.father_surname.$error.required"> 
+                  Campo requerido. 
+                </div>
+                <div class="error" ng-show="patientForm.father_surname.$error.pattern"> 
+                  Debe contener espacios y caracteres alfabéticos. 
+                </div>
+              </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Segundo apellido * </label>
+            <input
+              name="mother_surname"
+              maxlength="50" md-maxlength="50"
+              ng-model="patient.mother_surname"
+              ng-pattern="/^([a-zA-ZñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"
+              ng-change="generateCurp()"
+              ng-disabled="cevPatient"
+              required
+              uppercase-only></input>
+
+              <div ng-show="patientForm.mother_surname.$touched || submitted">
+                <div class="error" ng-show="patientForm.mother_surname.$error.required"> 
+                  Campo requerido. 
+                </div>
+                <div class="error" ng-show="patientForm.mother_surname.$error.pattern"> 
+                  Debe contener espacios y caracteres alfabéticos. 
+                </div>
+              </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Nacionalidad * </label>
+            <md-select
+              name="country_id"
+              ng-model="patient.country_id"
+              ng-disabled="cevPatient"
+              ng-init="patient.country_id=484"
+              ng-change="disableBirthplace()">
+              
+              <md-option
+                ng-repeat="country in catalog.countries | orderBy:'name'"
+                value="{{ country._id }}">
+                {{ country.name }}
+              </md-option>
+            </md-select>
+
+            <!--div ng-show = "patientForm.country_id.$touched || submitted">
+              <div class="error" ng-show="patientForm.country_id.$error.required"> 
+                Campo requerido. 
+              </div>
+            </div-->
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Entidad de Nacimiento </label>
+            <md-select
+              name="birthplace_1";
+              ng-model="birthplace_1"
+              ng-disabled="cevPatient || patient.country_id!=484"
+              required>
+              <md-option
+                id="birthplace_{{ $index }}"
+                ng-repeat="state in catalog.states | orderBy:'name'"
+                value="{{ state }}">
+                {{ state.name }}
+            </md-select>
+
+            <div ng-show="patientForm.birthplace_1.$touched || submitted">
+              <div class="error" ng-show="patientForm.birthplace_1.$error.required"> 
+                Campo requerido. 
+              </div>
+            </div>
+          </md-input-container>
+          
+
+          <div class="input-modal-datepicker">
+            <label> Fecha de nacimiento * </label>
+            <md-datepicker 
+              md-max-date="maxDate"
+              name="birthdate_1"
+              ng-model="birthdate_1"
+              ng-disabled="cevPatient"
+              ng-change="generateCurp()"
+              required>
+            </md-datepicker>
+
+            <div ng-show = "patientForm.birthdate_1.$touched || submitted">
+              <div class="error" ng-show="patientForm.birthdate_1.$error.required"> 
+                Campo requerido. 
+              </div>
+            </div>
+          </div>
+
+
+          <md-input-container class="input-info">
+            <label> Género </label>
+            <md-select
+              name="gender"
+              ng-model="patient.gender"
+              ng-disabled="cevPatient"
+              select
+              required>
+              <md-option
+                ng-repeat="gender in catalog.gender"
+                ng-selected="generateCurp()"
+                value="{{ gender }}">
+                {{ gender }}
+              </md-option>
+            </md-select>
+
+            <div ng-show = "patientForm.gender.$touched || submitted">
+              <div class="error" ng-show="patientForm.gender.$error.required"> 
+                Campo requerido. 
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> CURP * </label>
+            <input
+              name="curp"
+              maxlength="18" md-maxlength="18"
+              ng-model="patient.curp"
+              ng-pattern="/^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{0,2}$/"
+              ng-disabled="cevPatient"
+              ng-click="generateCurp()"
+              required
+              uppercase-only></input>
+
+            <div ng-show = "patientForm.curp.$touched || submitted">
+              <div class="error" ng-show="patientForm.curp.$error.required"> 
+                Campo requerido. 
+              </div>
+              <div class="error" ng-show="patientForm.curp.$error.pattern"> 
+                Formato no válido. 
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> CURP (últimos 2 dígitos) </label>
+            <input
+              name="curp_code"
+              maxlength="2" md-maxlength="2"
+              ng-model="patient.curp_code"
+              ng-pattern="/^[0-9]{2}$/"
+              ng-disabled="cevPatient"></input>
+
+            <div ng-show = "patientForm.curp_code.$touched || submitted">
+              <div class="error" ng-show="patientForm.curp_code.$error.required"> 
+                Campo requerido. 
+              </div>
+              <div class="error" ng-show="patientForm.curp_code.$error.pattern"> 
+                Debe contener 2 caracteres numéricos. 
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Registro Médico </label>
+            <input
+              name="medical_record"
+              maxlength="10" md-maxlength="10"
+              ng-model="patient.medical_record"
+              ng-pattern="/^([0-9]{10})$/"
+              ng-disabled="cevPatient"></input>
+
+            <div ng-show = "patientForm.medical_record.$touched || submitted">
+              <div class="error" ng-show="patientForm.medical_record.$error.required"> 
+                Campo requerido. 
+              </div>
+              <div class="error" ng-show="patientForm.medical_record.$error.pattern"> 
+                Debe contener 10 caracteres númericos. 
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Tipo de sangre </label>
+            <md-select
+              name="blood_type";
+              ng-model="patient.blood_type"
+              ng-disabled="cevPatient">
+              <md-option
+                id="blood_type_{{ $index }}"
+                ng-repeat="blood_type in catalog.bloodTypes | orderBy:'name'"
+                value="{{ blood_type.name }}">
+                {{ blood_type.name }}
+              </md-option>
+            </md-select>
+
+            <div ng-show="patientForm.blood_type.$touched || submitted">
+              <div class="error" ng-show="patientForm.blood_type.$error.required">
+                Campo requerido.
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Afiliación * </label>
+            <md-select
+              name="affiliation";
+              ng-model="patient.affiliation"
+              ng-disabled="cevPatient"
+              required>
+              <md-option
+                id="affiliation_{{ $index }}"
+                ng-repeat="affiliation in catalog.affiliations | orderBy:'name'"
+                value="{{ affiliation.name }}">
+                {{ affiliation.name }}
+              </md-option>
+            </md-select>
+
+            <div ng-show="patientForm.affiliation.$touched || submitted">
+              <div class="error" ng-show="patientForm.affiliation.$error.required">
+                Campo requerido.
+              </div>
+            </div>
+          </md-input-container>
+
+          <span class="title"> <br> Dirección </span>
+
+
+          <md-input-container class="input-info">
+            <label> Estado </label>
+            <md-select
+              name="state_id"
+              ng-model="patient.address[0].state_id"
+              ng-change="searchMunicipalities(patient.address[0].state_id)"
+              ng-disabled="cevPatient"
+              required>
+              <md-option
+                id="state_{{ $index }}"
+                ng-repeat="state in catalog.states | orderBy:'name'"
+                ng-value="state._id">
+                {{ state.name }}
+              </md-option>
+            </md-select>
+
+            <div ng-show="patientForm.state_id.$touched || submitted">
+              <div class="error" ng-show="patientForm.state_id.$error.required"> 
+                Campo requerido. 
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container
+            class="input-info">
+            <label> Municipio </label>
+            <md-select
+              name="municipality_id"
+              ng-model="patient.address[0].municipality_id"
+              ng-change="searchLocalities(patient.address[0].state_id, patient.address[0].municipality_id)"
+              ng-disabled="cevPatient"
+              required>
+              <md-option
+                id="municipality_{{ $index }}"
+                ng-repeat="municipality in municipalityList | orderBy:'name'"
+                ng-value="municipality.id">
+                {{ municipality.name }}
+              </md-option>
+            </md-select>
+
+            <div ng-show="patientForm.municipality_id.$touched || submitted">
+              <div class="error" ng-show="patientForm.municipality_id.$error.required"> 
+                Campo requerido.
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Localidad </label>
+            <md-select
+              name="locality_id";
+              ng-model="patient.address[0].locality_id"
+              ng-disabled="cevPatient"
+              required>
+              <md-option
+                id="locality_{{ $index }}"
+                ng-repeat="locality in localityList  | orderBy:'name'"
+                ng-value="locality.id">
+                {{ locality.name }}
+              </md-option>
+            </md-select>
+
+            <div ng-show = "patientForm.locality_id.$touched || submitted">
+              <div class="error" ng-show="patientForm.locality_id.$error.required"> 
+                Campo requerido. 
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Código Postal </label>
+            <input
+              name="zip_code"
+              maxlength="5" md-maxlength="5"
+              ng-model="patient.address[0].zip_code"
+              ng-pattern="/^[0-9]{5}$/"
+              ng-disabled="cevPatient"></input>
+
+            <div ng-show = "patientForm.zip_code.$touched || submitted">
+              <!--div class="error" ng-show="patientForm.zip_code.$error.required"> 
+                Campo requerido. 
+              </div-->
+              <div class="error" ng-show="patientForm.zip_code.$error.pattern"> 
+                Debe contener 5 caracteres númericos.
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Nombre del asentamiento </label>
+            <input
+              name="suburb_name"
+              maxlength="50" md-maxlength="50"
+              ng-model="patient.address[0].suburb_name"
+              ng-pattern="/^([a-zA-Z0-9ñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"
+              ng-disabled="cevPatient"
+              uppercase-only></input>
+
+            <div ng-show = "patientForm.suburb_name.$touched || submitted">
+              <!--div class="error" ng-show="patientForm.suburb_name.$error.required"> 
+                Campo requerido. 
+              </div-->
+              <div class="error" ng-show="patientForm.suburb_name.$error.pattern"> 
+                Debe contener caracteres alfanúmericos.
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Tipo de asentamiento </label>
+            <md-select
+              name="suburb_type";
+              ng-model="patient.address[0].suburb_type"
+              ng-disabled="cevPatient">
+              <md-option
+                id="suburb_type_{{ $index }}"
+                ng-repeat="suburbType in catalog.suburbTypes | orderBy:'name'"
+                value="{{suburbType.name}}">
+                {{ suburbType.name }}
+              </md-option>
+            </md-select>
+
+            <!--div ng-show = "patientForm.suburb_type.$touched || submitted">
+              <div class="error" ng-show="patientForm.suburb_type.$error.required"> 
+                Campo requerido. 
+              </div>
+            </div-->
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Nombre de la calle </label>
+            <input
+              name="street_name"
+              maxlength="50" md-maxlength="50"
+              ng-model="patient.address[0].street_name"
+              ng-pattern="/^([a-zA-Z0-9ñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"
+              ng-disabled="cevPatient"
+              uppercase-only></input>
+
+            <div ng-show = "patientForm.street_name.$touched || submitted">
+              <!--div class="error" ng-show="patientForm.street_name.$error.required"> 
+                Campo requerido. 
+              </div-->
+              <div class="error" ng-show="patientForm.street_name.$error.pattern"> 
+                Debe contener solo caracteres alfanúmericos.
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Tipo de calle </label>
+            <md-select
+              name="street_type";
+              ng-model="patient.address[0].street_type"
+              ng-disabled="cevPatient">
+              <md-option
+                id="street_type_{{ $index }}"
+                ng-repeat="streetType in catalog.streetTypes | orderBy:'name'"
+                value="{{streetType.name}}">
+                {{ streetType.name }}
+              </md-option>
+            </md-select>
+
+            <!--div ng-show = "patientForm.street_type.$touched || submitted">
+              <div class="error" ng-show="patientForm.street_type.$error.required"> 
+                Campo requerido. 
+              </div>
+            </div-->
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Número exterior </label>
+            <input
+              name="ext_number"
+              maxlength="5" md-maxlength="5"
+              ng-model="patient.address[0].ext_number"
+              ng-pattern="/^([a-zA-Z0-9]{0,5})$/"
+              ng-disabled="cevPatient"
+              uppercase-only></input>
+
+            <div ng-show = "patientForm.ext_number.$touched || submitted">
+              <!--div class="error" ng-show="patientForm.ext_number.$error.required"> 
+                Campo requerido. 
+              </div-->
+              <div class="error" ng-show="patientForm.ext_number.$error.pattern"> 
+                Debe contener caracteres alfanuméricos.
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Número interior </label>
+            <input
+              name="int_number"
+              maxlength="5" md-maxlength="5"
+              ng-model="patient.address[0].int_number"
+              ng-pattern="/^([a-zA-Z0-9]{0,5})$/"
+              ng-disabled="cevPatient"
+              uppercase-only></input>
+
+            <div ng-show = "patientForm.int_number.$touched || submitted">
+              <!--div class="error" ng-show="patientForm.int_number.$error.required"> 
+                Campo requerido. 
+              </div-->
+              <div class="error" ng-show="patientForm.int_number.$error.pattern"> 
+                Debe contener caracteres alfanuméricos.
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Entre calle 1 </label>
+            <input
+              name="between_street_1"
+              maxlength="50" md-maxlength="50"
+              ng-model="patient.address[0].between_street_1"
+              ng-pattern="/^([a-zA-Z0-9ñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"
+              ng-disabled="cevPatient"
+              uppercase-only></input>
+
+            <div ng-show = "patientForm.between_street_1.$touched || submitted">
+              <!--div class="error" ng-show="patientForm.between_street_1.$error.required"> 
+                Campo requerido. 
+              </div-->
+              <div class="error" ng-show="patientForm.between_street_1.$error.pattern"> 
+                Debe contener caracteres númericos.
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Entre calle 2 </label>
+            <input
+              name="between_street_2"
+              maxlength="50" md-maxlength="50"
+              ng-model="patient.address[0].between_street_2"
+              ng-pattern="/^([a-zA-Z0-9ñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"
+              ng-disabled="cevPatient"
+              uppercase-only></input>
+
+            <div ng-show = "patientForm.between_street_2.$touched || submitted">
+              <!--div class="error" ng-show="patientForm.between_street_2.$error.required"> 
+                Campo requerido. 
+              </div-->
+              <div class="error" ng-show="patientForm.between_street_2.$error.pattern"> 
+                Debe contener caracteres alfanúmericos.
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info-2">
+            <label> Referencia </label>
+            <input
+              name="reference"
+              maxlength="50" md-maxlength="50"
+              ng-model="patient.address[0].reference"
+              ng-pattern="/^([a-zA-Z0-9ñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"
+              ng-disabled="cevPatient"
+              uppercase-only></input>
+
+            <div ng-show = "patientForm.reference.$touched || submitted">
+              <!--div class="error" ng-show="patientForm.reference.$error.required"> 
+                Campo requerido. 
+              </div-->
+              <div class="error" ng-show="patientForm.reference.$error.pattern"> 
+                Debe contener alfanúmericos.
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="title">
+
+            <div layout="column" ng-cloak="" class="autocompletedemoInsideDialog">
+              
+              <md-content>
+                <span class="title"> <br> Responsable(s) del menor: </span>
+
+                <div style="text-align: right";>
+                  <md-button ng-click="openTutorDialog($event)" class="md-raised md-primary" 
+                      style="color:white; border-radius: 25px; padding: 5px 20px; margin-top:-5.5em"> 
+                    Agregar tutor
+                  </md-button>
+                </div>
+              </md-content>
+
+              <script type="text/ng-template" id="tutorDialog.tmpl.html">
+                <md-dialog aria-label="Searching Dialog">
+
+                  <md-toolbar>
+                    <div class="text-center">
+                      <h2 style="color:white;"> Búsqueda de tutor </h2>
+                    </div>
+                  </md-toolbar>
+
+                  <md-dialog-content ng-cloak>
+                    <div class="md-dialog-content">
+                      <form ng-submit="$event.preventDefault()" name="tutorCtrl.tutorForm">
+                        <p> Si no existe coincidencias en la búsqueda del tutor, será necesario agregarla en la sección de administración de responsables. </p>
+                        <md-autocomplete
+                            md-input-name="tutorAuto"
+                            md-selected-item="tutorCtrl.selectedItem"
+                            md-search-text="tutorCtrl.searchText"
+                            md-items="item in tutorCtrl.responseData"
+                            md-search-text-change="tutorCtrl.querySearch(tutorCtrl.searchText)"
+                            md-item-text="item.user.curp" + "item.user.first_name"
+                            md-min-length="1"
+                            placeholder="Buscar por el CURP del tutor"
+                            md-autofocus="" 
+                            required>
+                          <md-item-template>
+                            <span md-highlight-text="tutorCtrl.searchText" md-highlight-flags="^i">
+                              {{ item.user.curp }} - 
+                              {{ item.user.first_name }} {{ item.user.father_surname }} {{ item.user.mother_surname }}
+                            </span>
+                          </md-item-template>
+                          <md-not-found>
+                            No fueron encontradas conicidencias con el curp "{{tutorCtrl.searchText}}".
+                          </md-not-found>
+                        </md-autocomplete>
+
+                        <div ng-show = "tutorCtrl.tutorForm.tutorAuto.$touched || tutorCtrl.submitted">
+                          <div class="error" ng-show="tutorCtrl.tutorForm.tutorAuto.$error.required"> 
+                            Campo requerido. 
+                          </div>
+                        </div>
+
+                        <br>
+                        <md-input-container class="md-block">
+                          <label> Parentesco </label>
+                          <md-select
+                            name="kinship"
+                            ng-model="tutorCtrl.kinship"
+                            required>
+                            
+                            <md-option
+                              ng-repeat="kinship in catalog.kinships  | orderBy:'type'"
+                              value="{{ kinship.type }}">
+                              {{ kinship.type }}
+                            </md-option>
+                          </md-select>
+
+                          <div ng-show = "tutorCtrl.tutorForm.kinship.$touched || tutorCtrl.submitted">
+                            <div class="error" ng-show="tutorCtrl.tutorForm.kinship.$error.required"> 
+                              Campo requerido. 
+                            </div>
+                          </div>
+
+                        </md-input-container>
+                      </form>
+                    </div>
+                  </md-dialog-content>
+
+                  <div class="error"> 
+                    <br>{{ error }}
+                  </div>
+
+                  <md-dialog-actions>
+                    <md-button class="md-raised md-primary" style="color:white;" aria-label="Cancelar"
+                               ng-click="tutorCtrl.cancel($event)"> Cancelar </md-button>
+                    <md-button class="md-raised md-primary" style="color:white;" aria-label="Agregar" 
+                               ng-click="tutorCtrl.add($event)"> Agregar </md-button>
+                  </md-dialog-actions>
+
+                </md-dialog>
+
+              </script>
+            </div>
+
+          </md-input-container>
+
+
+          <div ng-repeat="tutor in patient.tutor">
+            <md-input-container class="input-info-3">
+              <a class='icon-delete' ng-click="removeTutor(tutor)"></a>
+              <h4>
+                Nombre: {{ tutor.person.user.first_name }} {{ tutor.person.user.father_surname }}  {{ tutor.person.user.mother_surname }}
+                <br> Parentesco: {{ tutor.kinship }}
+                <br> CURP: {{ tutor.person.user.curp }}
+                <br> Email: {{ tutor.person.email }}  <br>
+              </h4> 
+            </md-input-container>
+          </div>
+
+
+          <md-input-container class="title">
+
+            <div layout="column" ng-cloak="" class="autocompletedemoInsideDialog">
+              <md-content>
+                <span class="title"> <br> Médicos relacionados al menor: </span>
+                <div style="text-align: right";>
+                <md-button ng-click="openDoctorDialog($event)" class="md-raised md-primary" 
+                    style="color:white; border-radius: 25px; padding: 5px 20px; margin-top:-5.5em"> 
+                  Agregar médico
+                </md-button>
+                </div>
+              </md-content>
+
+              <script type="text/ng-template" id="doctorDialog.tmpl.html">
+                <md-dialog aria-label="Searching Dialog">
+
+                  <md-toolbar>
+                    <div class="text-center">
+                      <h2 style="color:white;"> Búsqueda de médico </h2>
+                    </div>
+                  </md-toolbar>
+
+                  <md-dialog-content ng-cloak>
+                    <div class="md-dialog-content">
+                      <form ng-submit="$event.preventDefault()">
+                        <p> Si no existe coincidencias en la búsqueda del médico, será necesario agregarla en la sección de administración de médicos. </p>
+                        <md-autocomplete
+                            md-selected-item="doctorCtrl.selectedItem"
+                            md-search-text="doctorCtrl.searchText"
+                            md-items="item in doctorCtrl.responseData"
+                            md-search-text-change="doctorCtrl.querySearch(doctorCtrl.searchText)"
+                            md-item-text="item.user.curp"
+                            md-min-length="1"
+                            placeholder="Buscar por el CURP del doctor"
+                            md-autofocus="">
+                          <md-item-template>
+                            <span md-highlight-text="doctorCtrl.searchText" md-highlight-flags="^i">
+                              {{ item.user.curp }} - 
+                              {{ item.user.first_name }} {{ item.user.father_surname }} {{ item.user.mother_surname }}
+                            </span>
+                          </md-item-template>
+                          <md-not-found>
+                            No fueron encontradas conicidencias con la CURP "{{doctorCtrl.searchText}}".
+                          </md-not-found>
+                        </md-autocomplete>
+                      </form>
+                    </div>
+                  </md-dialog-content>
+
+                  <div class="error"> 
+                    {{ error }}
+                  </div>
+
+                  <md-dialog-actions>
+                    <md-button class="md-raised md-primary" style="color:white;" aria-label="Cancelar"
+                               ng-click="doctorCtrl.cancel($event)"> Cancelar </md-button>
+                    <md-button class="md-raised md-primary" style="color:white;" aria-label="Agregar" 
+                               ng-click="doctorCtrl.add($event)"> Agregar </md-button>
+                  </md-dialog-actions>
+
+                </md-dialog>
+
+              </script>
+            </div>
+
+          </md-input-container>
+
+
+          <div ng-repeat="doctor in patient.doctor">
+            <md-input-container class="input-info-3">
+              <a class='icon-delete' ng-click="removeDoctor(doctor)"></a>
+              <h4> 
+                Nombre: {{ doctor.user.first_name }} {{ doctor.user.father_surname }}  {{ doctor.user.mother_surname }}
+                <br> CURP: {{ doctor.user.curp }}
+                <br> Email: {{ doctor.email }}  <br>
+              </h4> 
+            </md-input-container>
+          </div>
+
+
+          <md-input-container class="title">
+
+            <div layout="column" ng-cloak="" class="autocompletedemoInsideDialog">
+
+              <md-content>
+                <span class="title"> <br> Vacunas relacionadas al menor: </span>
+
+                <div style="text-align: right";>
+                  <md-button ng-click="openVaccineModal($event)" class="md-raised md-primary" 
+                      style="color:white; border-radius: 25px; padding: 5px 20px; margin-top:-5.5em"> 
+                      Agregar vacuna
+                  </md-button>
+                </div>
+              </md-content>
+
+              <script type="text/ng-template" id="vaccineModal.tmpl.html">
+                <md-dialog aria-label="vaccine modal">
+
+                  <md-toolbar>
+                    <div class="text-center">
+                      <h2 style="color:white;"> Seleccionar vacuna </h2>
+                    </div>
+                  </md-toolbar>
+
+                  <md-dialog-content ng-cloak>
+                    <div class="md-dialog-content">
+                      <form ng-submit="$event.preventDefault()" name="vaccineCtrl.vaccineControlForm">
+                        <p class="text-center"> Si no se visualiza ningún médico al seleccionar la lista desplegable de médicos, será necesario agregarlo en el formulario del paciente. </p>
+
+
+                        <md-input-container class="input-modal">
+                          <label> Vacuna </label>
+                          <md-select
+                            name="vaccine"
+                            ng-model="vaccineCtrl.vaccine" required>
+                            
+                            <md-option
+                              ng-repeat="vaccine in catalog.vaccines | orderBy:'name'"
+                              value="{{ vaccine.name }}">
+                              {{ vaccine.name }}
+                            </md-option>
+                          </md-select>
+
+                          <div ng-show = "vaccineCtrl.vaccineControlForm.vaccine.$touched || vaccineCtrl.submitted">
+                            <div class="error" ng-show="vaccineCtrl.vaccineControlForm.vaccine.$error.required"> 
+                              Campo requerido. 
+                            </div>
+                          </div>
+                        </md-input-container>
+
+                        <md-input-container class="input-modal">
+                          <label> Descripción </label>
+                          <md-select
+                            name="vaccinesDosage"
+                            ng-change="vaccineCtrl.vaccineJsonToObject()"
+                            ng-model="vaccineCtrl.vaccineControlData.dosage" required>
+                            
+                            <md-option
+                              ng-repeat="vaccinesDosage in catalog.vaccinesDosage | orderBy:'vaccine.name' | filter: {
+                                vaccine : { name: vaccineCtrl.vaccine } }"
+                              value="{{ vaccinesDosage }}">
+                                {{ vaccinesDosage.description }} -  {{ vaccinesDosage.application_age.description }}
+                            </md-option>
+                          </md-select>
+
+                          <div ng-show = "vaccineCtrl.vaccineControlForm.vaccinesDosage.$touched || vaccineCtrl.submitted">
+                            <div class="error" ng-show="vaccineCtrl.vaccineControlForm.vaccinesDosage.$error.required"> 
+                              Campo requerido. 
+                            </div>
+                          </div>
+                        </md-input-container>
+
+
+                        <md-input-container class="input-modal-1" ng-show='vaccineCtrl.selectedVaccine'>
+                          <h4> 
+                            Vacuna: {{ vaccineCtrl.dosage.vaccine.name }}  <br>
+                            Descripción: {{ vaccineCtrl.dosage.description }}  <br>
+                            Dosis: {{ vaccineCtrl.dosage.vaccine.dose }} ml <br>
+                            Edad de aplicación: {{ vaccineCtrl.dosage.application_age.description }}  <br>
+                          </h4> 
+                        </md-input-container>
+
+
+                        <div class="input-modal-datepicker">
+                          <label>Fecha de vacunación</label>
+                          <md-datepicker
+                            md-max-date="maxDate"
+                            name="application_date"
+                            ng-model="vaccineCtrl.vaccineControlData.application_date" 
+                            md-placeholder="Ingresar fecha"
+                            required>
+                          </md-datepicker>
+
+                          <div ng-show="vaccineCtrl.vaccineControlForm.application_date.$touched 
+                                         || vaccineCtrl.submitted">
+                            <div class="error" ng-show="vaccineCtrl.vaccineControlForm.application_date.$error.required"> 
+                              Campo requerido. 
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="input-modal-datepicker">
+                          <label>Fecha de caducidad</label>
+                          <md-datepicker
+                            name= "expiration"
+                            ng-model="vaccineCtrl.vaccineControlData.expiration" 
+                            md-placeholder="Ingresar fecha">
+                          </md-datepicker>
+                        </div>
+
+
+                        <md-input-container class="input-modal">
+                          <label> Número de lote biológico </label>
+                          <input
+                            name="serial"
+                            maxlength="20" md-maxlength="20"
+                            ng-model="vaccineCtrl.vaccineControlData.serial"
+                            ng-pattern="/^([a-zA-Z0-9ñáéíóúÑÁÉÍÓÚ\s]{0,20})$/"></input>
+
+                          <div ng-show = "vaccineCtrl.vaccineControlForm.serial.$touched || vaccineCtrl.submitted">
+                            <!--div class="error" ng-show="vaccineCtrl.vaccineControlForm.serial.$error.required"> 
+                              Campo requerido. 
+                            </div-->
+                            <div class="error" ng-show="vaccineCtrl.vaccineControlForm.serial.$error.pattern"> 
+                              Debe contener caracteres alfanumericos.
+                            </div>
+                          </div>
+                        </md-input-container>
+                        
+                        <md-input-container class="input-modal">
+                          <label> Observaciones </label>
+                          <textarea
+                              name="observations"
+                              ng-model="vaccineCtrl.vaccineControlData.observations"
+                              ng-pattern="/^([a-zA-Z0-9ñáéíóúÑÁÉÍÓÚ\s]{0,170})$/"
+                              maxlength="170" md-maxlength="170" rows="5"
+                              md-select-on-focus="">
+                          </textarea>
+                          <div ng-show = "vaccineCtrl.vaccineControlForm.observations.$touched 
+                                          || vaccineCtrl.submitted">
+                            <!--div class="error" 
+                                    ng-show="vaccineCtrl.vaccineControlForm.observations.$error.required"> 
+                              Campo requerido. 
+                            </div-->
+                            <div class="error" ng-show="vaccineCtrl.vaccineControlForm.observations.$error.pattern"> 
+                              Debe contener caracteres alfanumericos.
+                            </div>
+                          </div>
+                        </md-input-container>
+
+
+                        <md-input-container class="input-modal">
+                          <label> Doctor </label>
+                          <md-select
+                            name="doctors"
+                            ng-model="vaccineCtrl.vaccineControlData.doctors"
+                            required>
+                            
+                            <md-option
+                              ng-repeat="doctors in patient.doctor"
+                              value="{{ doctors }}">
+                              {{ doctors.user.first_name }} {{ doctors.user.father_surname }} {{ doctors.user.mother_surname }}
+                            </md-option>
+                          </md-select>
+
+                          <div ng-show = "vaccineCtrl.vaccineControlForm.doctors.$touched || vaccineCtrl.submitted">
+                            <div class="error" ng-show="vaccineCtrl.vaccineControlForm.doctors.$error.required"> 
+                              Campo requerido. 
+                            </div>
+                          </div>
+                        </md-input-container>
+                    
+                        <div class="error"> 
+                          {{ vaccineCtrl.vaccineError }}
+                        </div>
+
+                      </form>
+                    </div>
+
+                  </md-dialog-content>
+
+
+                  <md-dialog-actions>
+                    <md-button class="md-raised md-primary" style="color:white;" aria-label="Cancelar"
+                               ng-click="vaccineCtrl.cancel($event)"> Cancelar </md-button>
+                    <md-button class="md-raised md-primary" style="color:white;" aria-label="Agregar" 
+                               ng-click="vaccineCtrl.add($event)"> Agregar </md-button>
+                  </md-dialog-actions>
+
+                </md-dialog>
+
+              </script>
+            </div>
+
+          </md-input-container>
+
+          <div ng-init="initPatientVaccines()">
+          <div ng-repeat="vac in vaccineToShow">
+            <md-input-container class="input-info-3">
+              <!--a class='icon-delete' ng-click="removeVaccine(vac)"></a-->
+              <h4> 
+                Vacuna: {{ vac.vaccine }} <br>
+                Dosis: {{ vac.dose }} <br>
+                Fecha de aplicación: {{ vac.application_date }}  <br>
+              </h4> 
+            </md-input-container>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</section>

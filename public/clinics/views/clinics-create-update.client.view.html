@@ -1,0 +1,227 @@
+<section
+  class="otro" ng-cloack>
+
+  <aside
+    class="aside"
+    data-ng-controller="AsideMenuController"
+    ng-include="index_aside">
+  </aside>
+
+  <div
+    class="contentSection">
+
+    <div
+      class="sectionMenu">
+
+      <span
+        class="title">
+        {{ frontTexts.title1 }}
+      </span>
+
+      <md-button
+        ng-click="submit()"
+        ng-disabled="false"
+        class="md-raised md-primary createButton">
+        {{ frontTexts.button }}
+      </md-button>
+      <md-button
+        href="/#!/clinics/"
+        ng-disabled="false"
+        class="md-raised md-primary cancelButton">
+        Cancelar
+      </md-button>
+
+    </div>
+
+    <div
+      class="contentCreate">
+
+      <hr>
+      <span
+        class="title"> {{ frontTexts.title2 }}
+      </span>
+      <hr>
+
+      <form
+        name="clinicForm"
+        ng-submit="submit()"
+        id="myForm"
+        validate>
+
+        <!--div
+          class="picture">
+          <div
+            id="picture-preview"
+            class="picture-preview">
+            <md-tooltip
+              md-direction="top">
+              Agregar imágen
+            </md-tooltip>
+          </div>
+
+          <input
+              type="file"
+              multiple
+              ng-model="picture"
+              ngf-select="onChangePicture()"
+              name="file"
+              ngf-pattern="'image/*'"
+              accept="image/*"
+              ngf-max-size="20MB"
+             >
+           </input>
+          <div
+            class="error">
+            {{error}}
+          </div>
+        </div-->
+
+        <div class="info">
+
+          <div class="sectionMenu error">
+            <strong> {{ error }} </strong>
+          </div>
+          
+          <span class="title"> Datos Generales </span>
+
+          <md-input-container class="input-info">
+            <label> Nombre * </label>
+            <input
+              name="name"
+              maxlength="50" md-maxlength="50"
+              ng-model="clinic.name"
+              ng-pattern="/^([a-zA-Z0-9ñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"
+              required
+              uppercase-only></input>
+
+            <div ng-show = "clinicForm.name.$touched || submitted">
+              <div class="error" ng-show="clinicForm.name.$error.required"> 
+                Campo requerido. 
+              </div>
+              <div class="error" ng-show="clinicForm.name.$error.pattern"> 
+                Debe contener caracteres alfabéticos.
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Registro Sanitario * </label>
+            <input
+              name="code"
+              maxlength="8" md-maxlength="8"
+              ng-model="clinic.id"
+              ng-pattern="/^([a-zA-Z0-9\s]{8,8})$/" 
+              required
+              uppercase-only></input>
+
+            <div ng-show = "clinicForm.code.$touched || submitted">
+              <div class="error" ng-show="clinicForm.code.$error.required"> 
+                Campo requerido. 
+              </div>
+              <div class="error" ng-show="clinicForm.code.$error.pattern"> 
+                Debe contener 8 caracteres alfanúmericos.
+              </div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="input-info"></md-input-container>
+
+
+          <span class="title"> Dirección </span>
+
+
+          <md-input-container class="input-info">
+            <label> Estado </label>
+            <md-select
+              id="state_id"
+              name="state_id"
+              ng-model="clinic.address[0].state_id"
+              ng-change="searchMunicipalities(clinic.address[0].state_id)"
+              required>
+              <md-option
+                id="state_{{ $index }}"
+                ng-repeat="state in catalog.states | orderBy:'name'"
+                ng-value="state._id">
+                {{ state.name }}
+              </md-option>
+            </md-select>
+
+            <div ng-show="clinicForm.state_id.$touched || submitted">
+              <div class="error" ng-show="clinicForm.state_id.$error.required"> 
+                Campo requerido. 
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container
+            class="input-info">
+            <label> Municipio </label>
+            <md-select
+              name="municipality_id"
+              ng-model="clinic.address[0].municipality_id"
+              ng-change="searchLocalities(clinic.address[0].state_id, clinic.address[0].municipality_id)"
+              required>
+              <md-option
+                id="municipality_{{ $index }}"
+                ng-repeat="municipality in municipalityList | orderBy:'name'"
+                ng-value="municipality.id">
+                {{ municipality.name }}
+              </md-option>
+            </md-select>
+
+            <div ng-show="clinicForm.municipality_id.$touched || submitted">
+              <div class="error" ng-show="clinicForm.municipality_id.$error.required"> 
+                Campo requerido.
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Localidad </label>
+            <md-select
+              name="locality_id"
+              ng-model="clinic.address[0].locality_id"
+              required>
+              <md-option
+                id="locality_{{ $index }}"
+                ng-repeat="locality in localityList | orderBy:'name'"
+                ng-value="locality.id">
+                {{ locality.name }}
+              </md-option>
+            </md-select>
+
+            <div ng-show = "clinicForm.locality_id.$touched || submitted">
+              <div class="error" ng-show="clinicForm.locality_id.$error.required"> 
+                Campo requerido. 
+              </div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="input-info">
+            <label> Código Postal </label>
+            <input
+              name="zip_code"
+              maxlength="5" md-maxlength="5"
+              ng-model="clinic.address[0].zip_code"
+              ng-pattern="/^[0-9]{5}$/"></input>
+
+            <div ng-show = "clinicForm.zip_code.$touched || submitted">
+              <div class="error" ng-show="clinicForm.zip_code.$error.required"> 
+                Campo requerido. 
+              </div>
+              <div class="error" ng-show="clinicForm.zip_code.$error.pattern"> 
+                Debe contener 5 caracteres númericos.
+              </div>
+            </div>
+          </md-input-container>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,162 @@
+@import 'statics';
+
+*{
+  @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+  //@import url(https://fonts.googleapis.com/css?family=Slabo+27px);
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  font-family: $font-stack;
+}
+
+body,html{
+  margin: 0;
+  padding: 0;
+	background: $background-color;
+	height: 100vh;
+}
+
+md-tooltip{
+  @include enfasis(#fff);
+}
+
+.icon-delete {
+    float: right;
+    background: url("./img/ic_borrar_on.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    height: 50%;
+    width: 10%;
+}
+
+// modificaciones en boostrap
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {   
+  border-color: green;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+  font-size: 20px;
+  outline: 0 none;
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+
+  src: url('/img/fonts/glyphicons-halflings-regular.eot');
+  src: url('/img/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/img/fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('/img/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/img/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../img/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+.error{
+  color: $color-error;
+  font-size: 12px;
+  text-align: center;
+}
+
+
+label {
+  font-weight: normal;
+}
+
+
+// modificaciones en angular-material
+.md-select-icon {
+    color: #039903 !important;
+}
+
+md-option:hover {
+  background-color: #ceead2 !important;
+} 
+
+md-select-value.md-select-placeholder, label {
+  color:#113f14 !important;
+}
+
+md-input-container .md-input {
+  font-size: 16px;
+}
+
+md-option .md-text {
+  font-size: 18px;
+}
+
+.md-select-value > span:not(.md-select-icon) .md-text {
+  font-size: 18px;
+}
+
+md-input-container > md-select {
+  font-size: 16px;
+}
+
+.pagination > li > a, .pagination > li > span {
+  color:#113f14;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #14a515;
+  border-color: rgb(21, 171, 29);
+}
+
+.pagination-sm > li > a, .pagination-sm > li > span {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    z-index: 0;
+    color: #fff;
+    cursor: default;
+}
+
+.input-modal-datepicker {
+    display: inline-block;
+    font-size: 14px;
+    box-sizing: border-box;
+    border: none;
+    box-shadow: none;
+
+    background: transparent;
+
+    margin: 25px 25px 25px 25px;
+    min-width: 250px;
+    width: calc(48% - 50px);
+}
+
+.md-datepicker-input {
+    font-size: 14px;
+    box-sizing: border-box;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    background: transparent;
+    min-width: 180px;
+    max-width: 328px;
+}
+
+hr {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ddd;
+}
+
+.md-default-theme .md-datepicker-input-container.md-datepicker-invalid, .md-datepicker-input-container.md-datepicker-invalid {
+    border-bottom-color: rgb(219, 218, 218);
+}

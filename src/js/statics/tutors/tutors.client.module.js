@@ -1,0 +1,2 @@
+
+angular.module('tutors', ['components']);

@@ -1,0 +1,61 @@
+{
+  "name": "webapp-cev-protegelos",
+  "version": "1.0.0",
+  "description": "A CMS to 'Protégelos' project",
+  "main": "server.js",
+  "scripts": {
+    "test": "NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha app/tests/ -- -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.ironbit.net:webapp/webapp-cev-protegelos.git"
+  },
+  "keywords": [
+    "MongoDB",
+    "Express",
+    "AngularJS",
+    "Node.js"
+  ],
+  "author": "Alejandro Cedeño <alejandro.cedeno@ironbit.com.mx>",
+  "license": "ISC",
+  "dependencies": {
+    "base-64": "^0.1.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "~1.16.0",
+    "compression": "~1.6.2",
+    "ejs": "^2.4.1",
+    "express": "~4.14.0",
+    "file-stream-rotator": "0.0.7",
+    "jsonwebtoken": "^6.2.0",
+    "method-override": "~2.3.7",
+    "mongoose": "~4.7.7",
+    "mongoose-delete": "^0.3.4",
+    "morgan": "~1.7.0",
+    "multer": "^1.1.0",
+    "node-forge": "^0.6.41",
+    "node-mongoose-fixtures": "^0.2.4",
+    "node-rest-client": "^2.0.1",
+    "nodemailer": "^2.4.2",
+    "angular-aria": "~1.5.8",
+    "angular-animate": "~1.5.8",
+    "angular": "~1.5.8",
+    "angular-material": "~1.1.1",
+    "gulp-install": "~0.6.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "check-dependencies": "^1.0.1",
+    "gulp": "~3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-install": "~0.6.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^1.5.4",
+    "istanbul": "^0.4.5",
+    "jshint": "^2.9.2",
+    "mocha": "^3.0.2",
+    "supertest": "^2.0.0"
+  }
+}

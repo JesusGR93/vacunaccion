@@ -1,0 +1,203 @@
+<section
+  class="otro">
+
+  <aside
+    class="aside"
+    data-ng-controller="AsideMenuController"
+    ng-include="index_aside">
+  </aside>
+
+  <div class="contentSection">
+    
+    <div class="container">
+      <div class="col-md-9 col-md-offset-1">
+        <form name="searchForm"> 
+
+          <div class="input-group" id="adv-search">
+            <input type="text" class="form-control" 
+                   placeholder="Buscar por apellido paterno" 
+                   maxlength="50"
+                   ng-model="query.father_surname"/>
+
+            <div class="input-group-btn">
+              <div class="btn-group" role="group">
+                <div class="dropdown dropdown-lg">
+
+                  <button type="button" class="btn btn-default dropdown-toggle" 
+                          data-toggle="dropdown" aria-expanded="false">
+                          <span class="caret"></span>
+                  </button>
+                  
+                  <div class="dropdown-menu dropdown-menu-right" role="menu">
+                    <div class="form-horizontal" role="form">
+
+                      <div class="form-group">
+                        <label for="contain"> Apellido Materno </label>
+                        <input class="form-control" type="text" 
+                               maxlength="50"
+                               ng-model="query.mother_surname"/>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="contain"> Nombres </label>
+                        <input class="form-control" type="text" 
+                               maxlength="50"
+                               ng-model="query.first_name"/>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <button type="button" class="btn btn-success" ng-click="getAdmins()">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+
+                <button type="button" class="btn btn-success" ng-click="clearQuery()">
+                  <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      <div class="col-md-2">
+        <md-button
+          href="/#!/admins/create/"
+          ng-disabled="false"
+          class="md-raised md-primary createButton">
+          Agregar usuario +
+        </md-button>
+      </div>
+
+      <div class="contentList adminsList" ng-show="searching">
+        <form name="AdminSearchForm">
+
+            <md-input-container class="input-info">
+              <label> Nombres </label>
+              <input
+                name="first_name"
+                maxlength="50"
+                ng-model="adminSearch.first_name"
+                ng-pattern="/^([a-zA-ZñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"></input>
+
+                <div ng-show="adminForm.first_name.$touched || submitted">
+                  <div class="error" ng-show="adminForm.first_name.$error.pattern"> 
+                    Debe contener espacios y caracteres alfabéticos. 
+                  </div>
+                </div>
+            </md-input-container>
+
+
+            <md-input-container class="input-info">
+              <label> Primer apellido </label>
+              <input
+                name="father_surname"
+                maxlength="50"
+                ng-model="adminSearch.father_surname"
+                ng-pattern="/^([a-zA-ZñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"></input>
+
+                <div ng-show="adminForm.father_surname.$touched || submitted">
+                  <div class="error" ng-show="adminForm.father_surname.$error.pattern"> 
+                    Debe contener espacios y caracteres alfabéticos. 
+                  </div>
+                </div>
+            </md-input-container>
+
+
+            <md-input-container class="input-info">
+              <label> Segundo apellido </label>
+              <input
+                name="mother_surname"
+                maxlength="50"
+                ng-model="adminSearch.mother_surname"
+                ng-pattern="/^([a-zA-ZñáéíóúÑÁÉÍÓÚ\s]{0,50})$/"></input>
+
+                <div ng-show="adminForm.mother_surname.$touched || submitted">
+                  <div class="error" ng-show="adminForm.mother_surname.$error.pattern"> 
+                    Debe contener espacios y caracteres alfabéticos. 
+                  </div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+              <md-button
+                class="icon-search">
+              </md-button>
+            </md-input-container>
+
+        </form>
+      </div>
+
+      <div class="contentList adminList">
+
+        <hr>
+        <ul
+          class="filters">
+          <li class="acciones">
+              ACCIONES
+            </li>
+          <li class="father_surname">
+            PRIMER APELLIDO
+          </li>
+          <li class="mother_surname">
+            SEGUNDO APELLIDO
+          </li>
+          <li class="first_name">
+            NOMBRES
+          </li>
+          <li class="email">
+            EMAIL
+          </li>
+        </ul>
+        <hr>
+
+        <md-list ng-init="getAdmins()">
+          <md-list-item
+            class="md-1-line admonList noright"
+            ng-pagination="admin in adminsList"
+            ng-pagination-size="10"
+            id="adminList_{{$index}}">
+
+            <span class="acciones">
+                <a href="#!/admins/update/{{admin._id}}" class='icon-edit'></a>
+                <a ng-click="deleteConfirmation($event, admin)" class='icon-delete'></a>
+              </span>
+
+
+              <span class="father_surname">
+                {{$index+1}}) {{admin.user.father_surname}}
+              </span>
+              <span class="mother_surname">
+                {{admin.user.mother_surname}}
+              </span>
+
+              <span class="first_name">
+                {{admin.user.first_name}}
+              </span>
+
+              <span class="email">
+                {{admin.email}}
+              </span>
+
+              
+          </md-list-item>
+        </md-list>
+
+        <div class="sectionMenu error">
+          <strong> {{ error }} </strong>
+        </div >
+   
+    </div>
+
+    <hr />
+    <div class="text-center" style="margin-right:90px;">
+      <ng-pagination-control   pagination-id="adminsList"></ng-pagination-control>
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,92 @@
+@import 'statics';
+
+.aside{
+
+  position:fixed;
+  left:0;
+  height:100%;
+
+	width: $aside-width;
+	background-color: #fff;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.4);
+  bottom: 0px;
+  overflow-y: auto;
+
+	.ic-cdv{
+		position: relative;
+		float: left;
+		width: 100%;
+		height: 200px;
+		background: url($source-ic-cdv);
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		margin: 0px 0px 0px 0px;
+    outline: none;
+	}
+  .list{
+    position: relative;
+    float: left;
+    width: 100%;
+    margin-bottom: 140px;
+    .listItem{
+      position: relative;
+      float: left;
+      width: 100%;
+      border-bottom: solid 1px $background-color;
+      cursor: pointer;
+      outline: none;
+      img{
+        margin-right: 15px;
+      }
+      span{
+        @include enfasis(#777);
+        font-weight: lighter;
+      }
+      span.selected{
+        @include enfasis(#000);
+        font-weight: lighter;
+      }
+    }
+  }
+
+  .foter{
+    position: fixed;
+    bottom: 10px;
+    left:0px;
+    width: $aside-width;
+    background-color: #fff;
+    .ic-fundacion-cs{
+      position: relative;
+      float: left;
+      width: 100%;
+      height: 55px;
+      background: url($source-fundacion-cs);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-top: 15px;
+    }
+    .logoutButton:not([disabled]) {
+      margin: 15px 0px 15px 35px;
+      width: 200px;
+      border: 0;
+      background-color: $color-primary;
+      outline: none;
+      padding: 2px 15px;
+      @include border(50px);
+      @include enfasis(#fff);
+      text-align: center;
+    }
+    .logoutButton:not([disabled]):hover {
+      background-color: $color-primary-black !important;
+    }
+  }
+
+}
+
+@media only screen and (max-height: 595px) {
+  .foter{
+    box-shadow: -10px -1px 10px rgba(0,0,0,0.4);
+  }
+}

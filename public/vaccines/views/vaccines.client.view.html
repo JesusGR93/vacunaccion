@@ -1,0 +1,87 @@
+<section
+  class="otro"
+  ng-controller="VaccinesController">
+
+  <aside
+    class="aside"
+    data-ng-controller="AsideMenuController"
+    ng-include="index_aside">
+  </aside>
+
+  <div
+    class="contentSection">
+
+    <div
+      class="sectionMenu">
+      <md-button
+        href="/#!/vaccines/create/"
+        ng-disabled="false"
+        class="md-raised md-primary createButton">
+        Agregar vacuna +
+      </md-button>
+    </div>
+
+    <div
+      class="contentList vaccionesList">
+
+      <hr>
+      <ul
+        class="filters">
+        <li class="name">
+          NOMBRE
+        </li>
+        <li class="previous">
+          VACUNA PREVIA
+        </li>
+        <li class="route">
+          VÍA DE ADMINISTRACIÓN
+        </li>
+        <li class="dose">
+          DOSIS
+        </li>
+        <li class="gender">
+          GÉNERO
+        </li>
+        <li class="actions">
+          ACCIONES
+        </li>
+      </ul>
+      <hr>
+
+      <md-list
+        ng-init="readAllVaccines()">
+        <md-list-item
+          class="md-1-line admonList"
+          ng-repeat="item in vaccinesList"
+          ng-click="vaccinesListEvent($index)"
+          id="vaccineList_{{$index}}">
+            <span class="name">
+              {{$index+1}}) {{item.name}}
+            </span>
+            <span class="previous">
+              {{item.previous_vaccine.description}}
+            </span>
+            <span class="route">
+              {{item.administration_route.name}}
+            </span>
+            <span class="dose">
+              {{item.dose}} ml
+            </span>
+            <span class="gender">
+              {{item.gender}}
+            </span>
+            <span class="actions">
+              <md-icon
+                class="md-secondary md-fab md-mini md-primary"
+                ng-click="deleteConfirmation($event, $index)"
+                aria-label="Chat"
+                md-svg-icon="./img/ic_borrar_on.svg">
+              </md-icon>
+            </span>
+        </md-list-item>
+      </md-list>
+    </div>
+
+  </div>
+
+</section>

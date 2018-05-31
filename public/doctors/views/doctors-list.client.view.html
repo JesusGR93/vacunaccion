@@ -1,0 +1,237 @@
+<section
+  class="otro" ng-cloack>
+
+  <aside
+    class="aside"
+    data-ng-controller="AsideMenuController"
+    ng-include="index_aside">
+  </aside>
+
+  <div class="contentSection">
+
+    <div class="container">
+      <div class="col-md-9 col-md-offset-1">
+        <form name="searchForm"> 
+
+          <div class="input-group" id="adv-search">
+            <input type="text" class="form-control" 
+                   placeholder="Buscar por primer apellido" 
+                   maxlength="50"
+                   ng-model="query.father_surname"/>
+
+            <div class="input-group-btn">
+              <div class="btn-group" role="group">
+                <div class="dropdown dropdown-lg">
+
+                  <button type="button" class="btn btn-default dropdown-toggle" 
+                          data-toggle="dropdown" aria-expanded="false">
+                          <span class="caret"></span>
+                  </button>
+                  
+                  <div class="dropdown-menu dropdown-menu-right" role="menu">
+                    <div class="form-horizontal" role="form">
+
+                      <div class="form-group">
+                        <label for="contain"> Segundo apellido </label>
+                        <input class="form-control" type="text" 
+                               maxlength="50"
+                               ng-model="query.mother_surname"/>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="contain"> Nombres </label>
+                        <input class="form-control" type="text" 
+                               maxlength="50"
+                               ng-model="query.first_name"/>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="contain"> Cédula Profesional </label>
+                        <input class="form-control" type="text" 
+                               maxlength="7"
+                               ng-model="query.professional_license"/>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <button type="button" class="btn btn-success" ng-click="getDoctors()">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+
+                <button type="button" class="btn btn-success" ng-click="clearQuery()">
+                  <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+                </button>
+                
+              </div>
+            </div>
+            
+          </div>
+
+        </form>
+
+        <form
+        name="clinicForm"
+        ng-submit="submit()"
+        id="myForm"
+        validate>
+  
+        <div class="info">
+          <md-input-container class="input-info">
+            <label> Estado </label>
+            <md-select
+              id="state_id"
+              name="state_id"
+              ng-model="selected.state"
+              ng-change="searchMunicipalities(selected.state)">
+              <md-option
+                id="state_{{ $index }}"
+                ng-repeat="state in catalog.states | orderBy:'name'"
+                ng-value="state">
+                {{ state.name }}
+              </md-option>
+            </md-select>
+  
+            <div ng-show="clinicForm.state_id.$touched || submitted">
+              
+            </div>
+          </md-input-container>
+  
+  
+          <md-input-container
+            class="input-info">
+            <label> Municipio </label>
+            <md-select
+              id="municipality_id"
+              name="municipality_id"
+              ng-model="selected.municipality"
+              ng-change="searchLocalities(selected.municipality)"
+              >
+              <md-option
+                id="municipality_{{ $index }}"
+                ng-repeat="municipality in catalog.municipalityList | orderBy:'name'"
+                ng-value="municipality">
+                {{ municipality.name }}
+              </md-option>
+            </md-select>
+  
+            <div ng-show="clinicForm.municipality_id.$touched || submitted">
+              
+            </div>
+          </md-input-container>
+  
+  
+          <md-input-container class="input-info">
+            <label> Localidad </label>
+            <md-select
+              name="locality_id"
+              ng-model="selected.idLocality">
+              <md-option
+                id="locality_{{ $index }}"
+                ng-repeat="locality in localityList | orderBy:'name'"
+                ng-value="locality.id">
+                {{ locality.name }}
+              </md-option>
+            </md-select>
+  
+            <div ng-show = "clinicForm.locality_id.$touched || submitted">
+             
+            </div>
+          </md-input-container>
+  
+  
+         
+  
+        </div>
+      </form>
+  
+      </div>
+
+      <div class="col-md-2">
+        <md-button
+          href="/#!/doctors/create/"
+          ng-disabled="false"
+          class="md-raised md-primary createButton">
+          Agregar médico +
+        </md-button>
+      </div>
+
+      <div
+        class="contentList doctorsList">
+
+        <hr>
+        <ul
+          class="filters">
+          <li class="acciones">
+              ACCIONES
+            </li>
+          <li class="professional_license">
+            CÉDULA PROFESIONAL
+          </li>
+          <li class="father_surname">
+            PRIMER APELLIDO
+          </li>
+          <li class="mother_surname">
+            SEGUNDO APELLIDO
+          </li>
+          <li class="first_name">
+            NOMBRES
+          </li>
+          <li class="email">
+            EMAIL
+          </li>
+          
+        </ul>
+        <hr>
+
+        <md-list ng-init="getDoctors()">
+          <md-list-item
+            class="md-1-line admonList"
+            ng-pagination="doctor in doctorsList "
+            ng-pagination-size="10"
+            id="doctorList_{{$index}}">
+            <span class="acciones">
+                <a href="#!/doctors/update/{{doctor._id}}" class='icon-edit'></a>
+                <a class='icon-delete' ng-click="deleteConfirm($event, doctor)"></a>
+              </span>
+
+              <span class="professional_license">
+                {{ $index+1 }}) {{ doctor.user.professional_license }}
+              </span>
+              <span class="father_surname">
+                {{doctor.user.father_surname}}
+              </span>
+              <span class="mother_surname">
+                {{doctor.user.mother_surname}}
+              </span>
+              <span class="first_name">
+                {{doctor.user.first_name}}
+              </span>
+              <span class="email">
+                {{doctor.email}}
+              </span>
+              <span class="kinship">
+                {{doctor.user.kinship}}
+              </span>
+
+          </md-list-item>
+        </md-list>
+
+        <div class="sectionMenu error">
+          <strong> {{ error }} </strong>
+        </div>
+
+      </div>
+
+    </div>
+
+    <hr />
+    <div class="text-center" style="margin-right:90px;">
+      <ng-pagination-control   pagination-id="doctorsList"></ng-pagination-control>
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,42 @@
+<section
+  class="login"
+  data-ng-controller="LoginController"
+  ng-init="getUrlToken()">
+  <div
+    class="login-lightBox">
+    <div class="ic_cev"></div>
+    <p>Restablecer contraseña</p>
+    <form
+      data-ng-submit="reset()"
+      validate>
+
+      <input
+        type="password"
+        data-ng-model="password"
+        name="password"
+        value=""
+        autocomplete="off"
+        placeholder="Contraseña" required>
+      <input
+        type="password"
+        data-ng-model="passwordC"
+        name="passwordC"
+        value=""
+        autocomplete="off"
+        placeholder="Repetir contraseña" required>
+
+      <div
+        class="msg"
+        data-ng-bind="error"
+        data-ng-show="error"></div>
+
+      <md-button
+        type="submit"
+        ng-disabled="resetButtonDisabled"
+        class="md-raised md-primary loginButton">
+        Restablecer</md-button>
+
+    </form>
+
+  </div>
+</section>

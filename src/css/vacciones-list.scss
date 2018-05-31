@@ -1,0 +1,13 @@
+@import 'statics';
+
+.vaccionesList{
+  .name,.previous,.route{
+    width: 25%;
+  }
+  .dose,.gender{
+    width: calc(12.5% - 30px);
+  }
+  .actions{
+    width: 60px;
+  }
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Use the 'title' property to render a page title -->
+    <title><%= title %></title>
+    <link href="/vendors.css" rel="stylesheet" type="text/css">
+    <link href="/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!-- Render AngularJS views -->
+    <section ng-view></section>
+
+    <!-- Load local scripts -->
+    <script type="text/javascript" src="/vendors.js"></script>
+    <script type="text/javascript" src="/app.js"></script>
+
+</body>
+</html>
+
